@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Teacher Portal</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='teacher.css') }}">
+</head>
+<body>
+<img src="{{ url_for('static', filename='adu-logo.png') }}" class="logo" alt="Logo">
+  <a href="/logout" class="logout-button">Logout</a>
+  {% if new_count > 0 %}
+    <div class="notification-banner">
+      🔔 You have {{ new_count }} new submission{{ 's' if new_count > 1 else '' }}!
+    </div>
+  {% endif %}
+  <h1 style="text-align: center;font-size: 36px;
+    color: #4d7c84;">INMIND</h1>
+
+  <div class="submissions">
+    {% for s in submissions %}
+    <div class="submission-card">
+      <div class="card-header">
+        <div>
+          <strong>Student:</strong> {{ s.username }}<br>
+          {{ s.timestamp }}
+        </div>
+        <div class="mood-label">
+          {% set mood_labels = {
+          'yellow': 'Happy',
+          'gray': 'Sad',
+          'blue': 'Worried',
+          'green': 'Calm',
+          'red': 'Angry',
+          'purple': 'Anxious'
+        } %}
+
+        {% if s.mood %}
+          <span class="mood-dot {{ s.mood }}"></span> {{ mood_labels.get(s.mood, 'Unknown') }}
+        {% else %}
+          <span class="mood-dot gray"></span> Unknown
+        {% endif %}
+
+
+        </div>
+      </div>
+
+      <div class="message-box {{ s.mood }}">
+        {{ s.answer }}
+      </div>
+
+      {% if s.bonus %}
+        <div class="bonus-status rewarded">✔ Rewarded</div>
+      {% else %}
+        <a href="{{ url_for('give_bonus', index=loop.index0) }}" class="bonus-btn">⭐ Give Bonus</a>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,110 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: url("journal-bg.png") no-repeat center center;
+  background-size: cover;
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.screen {
+  width: 100%;
+  max-width: 1080px;
+  height: 1100px;
+  padding: 5px 50px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.logo {
+  width: 160px;
+  margin-bottom: 10px;
+}
+
+.center-icon {
+  width: 350px;
+  display: block;
+  margin: 20px auto;
+}
+
+.legend {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  font-size: 18px;
+  margin: 20px 0;
+  text-align: left;
+  justify-items: start;
+}
+
+
+
+.dot {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.yellow { background: yellow; }
+.gray { background: gray; }
+.blue { background: blue; }
+.green { background: green; }
+.red { background: red; }
+.purple { background: purple; }
+
+
+textarea {
+  width: 90%;
+  height: 200px;
+  border-radius: 20px;
+  padding: 20px;
+  font-size: 20px;
+  border: 3px solid #222;
+  resize: none;
+  box-sizing: border-box;
+  margin: 30px auto;
+  background-color: transparent;
+  color: black;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+button {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+  padding: 14px;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(to right, #7daec6, #9bc6d4);
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+}
+.logout-button1 {
+  position: absolute;
+  top: 13px;
+  right: 60px;
+  background:#7daec6;
+  color: black;
+  padding: 10px 15px;
+  text-decoration: none;
+  border-radius: 20px;
+  font-weight: bold;
+  z-index: 100;
+  font-size: 14px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.logout-button1:hover {
+  background-color: #9bc6d4;
+}

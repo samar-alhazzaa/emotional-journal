@@ -1,0 +1,168 @@
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  background: url("background.png") no-repeat center center;
+  background-size: cover;
+
+}
+
+.logo {
+  width: 250px;
+  display: block;
+  margin: 10px auto;
+}
+
+.card {
+  background: #d2b48c;
+  border-radius: 20px;
+  margin: 20px 0;
+  padding: 20px;
+  position: relative;
+}
+
+.answer-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icon {
+  font-size: 24px;
+}
+
+.text {
+  font-size: 18px;
+  flex: 1;
+  padding: 0 20px;
+}
+
+.bonus {
+  background: gold;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-weight: bold;
+}
+
+.bonus-btn {
+  text-decoration: none;
+  background: #4caf50;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-weight: bold;
+}
+
+.footer {
+  text-align: right;
+  margin-top: 10px;
+  font-size: 14px;
+}
+.logout-button {
+  position: absolute;
+  top: 13px;
+  right: 30px;
+  background:#b08771;
+  color: black;
+  padding: 10px 15px;
+  text-decoration: none;
+  border-radius: 20px;
+  font-weight: bold;
+  z-index: 100;
+  font-size: 14px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.logout-button:hover {
+  background-color: #8c6c5f;
+}
+.submissions {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.submission-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.mood-label {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.mood-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.message-box {
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+/* Color classes based on mood */
+.yellow { background-color: #fff5cc; color: #444; }
+.gray { background-color: #eeeeee; color: #444; }
+.blue { background-color: #e0f0ff; color: #003366; }
+.green { background-color: #d9f7e4; color: #14532d; }
+.red { background-color: #ffe0e0; color: #8b0000; }
+.purple { background-color: #e5d5ff; color: #4b0082; }
+
+/* Match dot colors */
+.mood-dot.yellow { background: orange; }
+.mood-dot.gray { background: gray; }
+.mood-dot.blue { background: dodgerblue; }
+.mood-dot.green { background: mediumseagreen; }
+.mood-dot.red { background: red; }
+.mood-dot.purple { background: purple; }
+
+.bonus-btn {
+  display: inline-block;
+  background: gold;
+  color: #333;
+  font-weight: bold;
+  padding: 8px 14px;
+  border-radius: 20px;
+  text-decoration: none;
+}
+
+.bonus-status.rewarded {
+  background: #4CAF50;
+  color: white;
+  font-weight: bold;
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 20px;
+}
+.notification-banner {
+  background-color: #ffeeba;
+  border: 1px solid #f0ad4e;
+  padding: 12px 20px;
+  margin: 10px auto;
+  max-width: 800px;
+  border-radius: 10px;
+  font-weight: bold;
+  color: #8a6d3b;
+  box-shadow: 0 0 6px rgba(0,0,0,0.1);
+  text-align: center;
+}
+

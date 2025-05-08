@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Emotional Journal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='journal.css') }}">
+</head>
+<body>
+  <a href="/logout" class="logout-button1">Logout</a>
+
+  <div class="screen">
+    <img src="{{ url_for('static', filename='adu-logo.png') }}" class="logo" alt="Logo">
+
+    <!-- Central icon (upload your SVG or PNG image) -->
+    <img src="{{ url_for('static', filename='icon.png') }}" class="center-icon" alt="Icon">
+
+    <!-- Mood color options -->
+    <form method="POST" action="/submit" onsubmit="return submitText()">
+      <div class="legend">
+        <label><input type="radio" name="mood" value="yellow"> <span class="dot yellow"></span> Happy</label>
+        <label><input type="radio" name="mood" value="gray"> <span class="dot gray"></span> Sad</label>
+        <label><input type="radio" name="mood" value="blue"> <span class="dot blue"></span> Worried</label>
+        <label><input type="radio" name="mood" value="green"> <span class="dot green"></span> Calm</label>
+        <label><input type="radio" name="mood" value="red"> <span class="dot red"></span> Angry</label>
+        <label><input type="radio" name="mood" value="purple"> <span class="dot purple"></span> Anxious</label>
+      </div>
+
+      <textarea name="answer" id="journal" placeholder="Your text.."></textarea>
+      <button type="submit">SUBMIT ➤</button>
+    </form>
+
+
+    {% if message %}
+      <p id="thank-you" style="color: green; font-weight: bold; text-align: center; margin-top: 20px;">
+        {{ message }}
+      </p>
+
+      <script>
+        setTimeout(() => {
+          const thankYou = document.getElementById('thank-you');
+          if (thankYou) {
+            thankYou.style.display = 'none';
+          }
+        }, 5000); // 7 seconds
+      </script>
+    {% endif %}
+
+
+  </div>
+
+ <script>
+    const radios = document.querySelectorAll('input[name="mood"]');
+    const textarea = document.getElementById('journal');
+
+    radios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        const mood = radio.value;
+
+        switch (mood) {
+          case 'yellow':
+            textarea.style.color = 'yellow';
+            textarea.style.backgroundColor = 'grey';
+            break;
+          default:
+            textarea.style.color = mood;
+            textarea.style.backgroundColor = 'transparent';
+            break;
+        }
+      });
+    });
+
+    function submitText() {
+      const moodSelected = document.querySelector('input[name="mood"]:checked');
+      const textarea = document.getElementById('journal');
+      const thankYou = document.getElementById('thank-you');
+
+      if (!moodSelected) {
+        alert("Please select a color from the legend before submitting.");
+        return false; // stop form submission
+      }
+
+      if (!textarea.value.trim()) {
+        alert("Please enter your thoughts before submitting.");
+        return false; // stop form submission
+      }
+
+      thankYou.style.display = 'block';
+
+      setTimeout(() => {
+        thankYou.style.display = 'none';
+      }, 100000);
+
+      return true; // allow form to submit
+    }
+
+
+
+  </script>
+
+</body>
+</html>
