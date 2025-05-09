@@ -31,12 +31,13 @@ body {
 
 .legend {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 2fr);
   gap: 15px;
   font-size: 18px;
   margin: 20px 0;
   text-align: left;
   justify-items: start;
+
 }
 
 
