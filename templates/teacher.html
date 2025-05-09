@@ -6,56 +6,82 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='teacher.css') }}">
 </head>
 <body>
-<img src="{{ url_for('static', filename='adu-logo.png') }}" class="logo" alt="Logo">
+  <img src="{{ url_for('static', filename='adu-logo.png') }}" class="logo" alt="Logo">
   <a href="/logout" class="logout-button">Logout</a>
+
   {% if new_count > 0 %}
     <div class="notification-banner">
       🔔 You have {{ new_count }} new submission{{ 's' if new_count > 1 else '' }}!
     </div>
   {% endif %}
-  <h1 style="text-align: center;font-size: 36px;
-    color: #4d7c84;">INMIND</h1>
+
+  <h1 style="text-align: center;font-size: 36px; color: #4d7c84;">INMIND</h1>
 
   <div class="submissions">
-    {% for s in submissions %}
-    <div class="submission-card">
-      <div class="card-header">
-        <div>
-          <strong>Student:</strong> {{ s.username }}<br>
-          {{ s.timestamp }}
-        </div>
-        <div class="mood-label">
-          {% set mood_labels = {
-          'yellow': 'Happy',
-          'gray': 'Sad',
-          'blue': 'Worried',
-          'green': 'Calm',
-          'red': 'Angry',
-          'purple': 'Anxious'
-        } %}
+    {% if submissions %}
+      {% set mood_labels = {
+        'yellow': 'Happy',
+        'gray': 'Sad',
+        'blue': 'Worried',
+        'green': 'Calm',
+        'red': 'Angry',
+        'purple': 'Anxious'
+      } %}
 
-        {% if s.mood %}
-          <span class="mood-dot {{ s.mood }}"></span> {{ mood_labels.get(s.mood, 'Unknown') }}
+      {% for s in submissions %}
+      <div class="submission-card">
+        <div class="card-header">
+          <div>
+            <div class="student-id">
+              <button class="toggle-username" onclick="toggleUsername(this)">👁️</button>
+              <strong><span class="masked-username">Student: *****</span></strong>
+              <strong><span class="real-username" style="display: none;">Student: {{ s.username }}</span></strong>
+            </div>
+            {{ s.timestamp }}
+          </div>
+          <div class="mood-label">
+            {% if s.mood %}
+              <span class="mood-dot {{ s.mood }}"></span> {{ mood_labels.get(s.mood, 'Unknown') }}
+            {% else %}
+              <span class="mood-dot gray"></span> Unknown
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="message-box {{ s.mood }}">
+          {{ s.answer }}
+        </div>
+
+        {% if s.bonus %}
+          <div class="bonus-status rewarded">✔ Rewarded</div>
         {% else %}
-          <span class="mood-dot gray"></span> Unknown
+          <a href="{{ url_for('give_bonus', index=loop.index0) }}" class="bonus-btn">⭐ Give Bonus</a>
         {% endif %}
-
-
-        </div>
       </div>
-
-      <div class="message-box {{ s.mood }}">
-        {{ s.answer }}
+      {% endfor %}
+    {% else %}
+      <div class="no-submissions">
+        📭 No student messages yet. Please check back later.
       </div>
-
-      {% if s.bonus %}
-        <div class="bonus-status rewarded">✔ Rewarded</div>
-      {% else %}
-        <a href="{{ url_for('give_bonus', index=loop.index0) }}" class="bonus-btn">⭐ Give Bonus</a>
-      {% endif %}
-    </div>
-    {% endfor %}
+    {% endif %}
   </div>
-</body>
 
+  <script>
+    function toggleUsername(button) {
+      const card = button.closest('.student-id');
+      const masked = card.querySelector('.masked-username');
+      const real = card.querySelector('.real-username');
+
+      if (real.style.display === 'none') {
+        masked.style.display = 'none';
+        real.style.display = 'inline';
+        button.textContent = '🙈';
+      } else {
+        masked.style.display = 'inline';
+        real.style.display = 'none';
+        button.textContent = '👁️';
+      }
+    }
+  </script>
+</body>
 </html>
