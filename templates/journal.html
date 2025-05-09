@@ -26,25 +26,23 @@
         <label><input type="radio" name="mood" value="purple"> <span class="dot purple"></span> Anxious</label>
       </div>
 
+      {% if message %}
+        <p id="thank-you" style="color: green; font-weight: bold; text-align: center; margin-top: 20px;">
+          {{ message }}
+        </p>
+
+        <script>
+          setTimeout(() => {
+            const thankYou = document.getElementById('thank-you');
+            if (thankYou) {
+              thankYou.style.display = 'none';
+            }
+          }, 5000); // 7 seconds
+        </script>
+      {% endif %}
       <textarea name="answer" id="journal" placeholder="Your text.."></textarea>
       <button type="submit">SUBMIT ➤</button>
     </form>
-    {% if message %}
-    <div id="thank-modal" class="modal-overlay">
-      <div class="modal-box">
-        {{ message }}
-      </div>
-    </div>
-
-    <script>
-      setTimeout(() => {
-        const modal = document.getElementById('thank-modal');
-        if (modal) modal.style.display = 'none';
-      }, 5000); // Hide after 7 seconds
-    </script>
-    {% endif %}
-
-
 
   </div>
 
@@ -88,7 +86,7 @@
 
       setTimeout(() => {
         thankYou.style.display = 'none';
-      }, 5000);
+      }, 100000);
 
       return true; // allow form to submit
     }
